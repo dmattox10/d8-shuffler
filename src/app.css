@@ -1,0 +1,198 @@
+/* Layout for the app itself. Everything that looks like a control comes from
+   the Frostplate kit; this file only arranges it. */
+
+body {
+  background: var(--nord0);
+  overflow: hidden;
+}
+
+.d8 {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.d8::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 90% at 50% -20%, #3b4252 0%, var(--nord0) 55%, var(--sub0) 100%),
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+}
+
+.d8__main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px 20px 24px;
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.d8__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.d8__col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.d8__big {
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--ink-bright);
+}
+.d8__big .dim {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.d8__note {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+.d8__note strong,
+.d8__p strong {
+  color: var(--ink-bright);
+  font-weight: 600;
+}
+
+.d8__p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.d8__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.d8__tight {
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.d8__wrap {
+  flex-wrap: wrap;
+}
+
+.d8__between {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.d8__opts {
+  gap: 14px;
+}
+
+.d8__optrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.d8__vol {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.d8__vol strong {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.d8__volsub {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.d8__empty {
+  padding: 22px 8px;
+  text-align: center;
+  border: 1px dashed var(--nord3);
+  background: rgba(33, 38, 47, 0.5);
+}
+.d8__empty .d8__big {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.d8__alertact {
+  margin-top: 10px;
+}
+
+.d8__fit {
+  margin-top: 14px;
+  gap: 8px;
+}
+
+.d8__current {
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.d8__fails {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.6;
+  font-size: 12.5px;
+}
+
+.d8__go {
+  margin-top: 4px;
+}
+.d8__why {
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+
+.d8__toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+}
+
+.gc-panel + .d8__note,
+.gc-panel__body > * + .gc-alert,
+.gc-panel__body > * + .d8__note,
+.gc-panel__body > * + .stack,
+.gc-panel__body > * + .gc-list {
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .d8__cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The selected card row is a light slab, so its badge needs dark ink. */
+.gc-list__item[aria-current="true"] .gc-badge {
+  color: var(--nord0);
+  border-color: rgba(46, 52, 64, 0.65);
+  background: rgba(46, 52, 64, 0.16);
+}
